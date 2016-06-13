@@ -22,10 +22,9 @@ def EOF_similarity(obs,model):
     data=np.concatenate((obs,model),axis=1)
 # Conduct the EOF via the svd function
     U, s, V = scipy.linalg.svd(data, full_matrices=True)
-    #Y = np.dot((data),U);
+    Y = np.dot((data),V);
 # Compute the amount of explained variance    
     var_exp=np.cumsum(s**2/np.sum(s**2));
-    #U=-1*U
 # Split the resulting loadings into two    
     load_obs,load_model=np.array_split(np.transpose(V), 2)    
     dif=np.abs(load_obs-load_model)
@@ -39,5 +38,5 @@ def EOF_similarity(obs,model):
     for l in range(0,obs.shape[1]):
         skill=np.append(skill,np.sum(dif[l,:]*var))
     skill=np.delete(skill,0,axis=0)        
-    return skill 
+    return (skill,Y[:,1],Y[:,2],Y[:,3],var,load_obs,load_model) 
      
