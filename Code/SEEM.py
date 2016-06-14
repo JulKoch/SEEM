@@ -7,7 +7,10 @@
 # Input: two arrays that represent the space-time matrix of a variable. 
 # For the spatial EOF-analysis (most common) represent the rows locations in
 # space and the columns represent the temporal dimension. The two inputs need
-# to have identical dimensions. 
+# to have identical dimensions. This functions returns the first three EOFs
+# which is usually sufficient, as most of the variance is explained by the 
+# first three EOFs. Changes can easily be implemented.
+  
 import numpy as np
 import scipy
 
@@ -38,5 +41,6 @@ def EOF_similarity(obs,model):
     for l in range(0,obs.shape[1]):
         skill=np.append(skill,np.sum(dif[l,:]*var))
     skill=np.delete(skill,0,axis=0)        
+# output: skill score, EOF maps 1-3, explained variance, loadings obs, loadings model
     return (skill,Y[:,1],Y[:,2],Y[:,3],var,load_obs,load_model) 
      
