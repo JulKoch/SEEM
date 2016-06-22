@@ -53,7 +53,7 @@ model=model[~np.isnan(model).any(axis=1)]
 a=EOF_similarity(obs,model)
 
 ## output
-EOF[:]=a[0] # Skill Score
+EOF=a[0] # Skill Score
 eof1=a[1] # EOF1
 eof2=a[2] # EOF2
 eof3=a[3] # EOF3
@@ -94,11 +94,11 @@ if plot==True:
 # Plotting details for X-axis    
     x = [0,0+121,0+242,365]
     xlabels = ['jan08','may08','sep08','jan09']
-    
+    plt.figure(0) 
     plt.figure(figsize=(12,6))
     plt.subplots_adjust(hspace=0.2,wspace=0.2)    
     # plot EOF1-3 maps    
-     
+   
     #EOF1
     plt.subplot(2,3,1) 
     lim=np.max([np.nanmax(eof1_map),np.abs(np.nanmin(eof1_map))])    
@@ -155,4 +155,11 @@ if plot==True:
     plt.yticks([-lim,0,lim])
     plt.legend(loc=4,fontsize=10,frameon=False,ncol=2,columnspacing=0.2,labelspacing=0.1,handletextpad=0.1)         
     
-   
+    # plot timeseries of the pattern similairty score based on the EOF analysis
+    plt.figure(1)
+    plt.figure(figsize=(6,3))    
+    plt.plot(EOF,'k',label='Pattern Score')
+    plt.xticks(x,xlabels,rotation=45)
+    lim=np.nanmax(EOF)    
+    plt.axis((0,365,0,lim))
+    plt.ylabel('Pattern Similarity Score')
