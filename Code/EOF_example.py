@@ -2,7 +2,7 @@
 # Author: Julian Koch (juko@geus.dk)
 # Date: June/2016
 ###
-# This is an example of how to use the EOF function to quantify spatial 
+# This is an example for how to use the EOF function to quantify spatial 
 # similarity between two datasets. In this example a reference dataset is
 # referred to as "obs" and a "model" refers to the dataset to be evaluated
 
