@@ -1,3 +1,6 @@
 Koch, J., Jensen, K.H. and Stisen, S., 2015. Toward a true spatial model evaluation in distributed hydrological modeling: Kappa statistics,
 Fuzzy theory, and EOF-analysis benchmarked by the human perception and evaluated against a modeling case study. Water Resources Research, 51
 (2), pp.1225-1246.
+
+Koch, J., Siemann, A., Stisen, S. and Sheffield, J., 2016. Spatial validation of large‐scale land surface models against monthly land surface 
+temperature patterns using innovative performance metrics. Journal of Geophysical Research: Atmospheres.
