@@ -128,7 +128,9 @@ def connectivity(obs,model):
     # final connectivity metric for low phase
     return (con_obs_high,con_model_high,con_obs_low,con_model_low,cl_obs_high,cl_model_high,cl_obs_low,cl_model_low,out_high,out_low)    
 #########################################################################################  
-# parula colormap
+# parula color map
+# This is my preferred color map and it is used by e.g. matlab as standard.
+# It is not yet part of matplotlib and therefore needs to be imported separately.
 
 from matplotlib.colors import LinearSegmentedColormap
 

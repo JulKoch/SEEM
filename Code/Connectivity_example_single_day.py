@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 from matplotlib import colors 
 from SEEM import connectivity
 from SEEM import parula_cm
+
 # Where is the example data?     
 Path='../Data/' 
 
