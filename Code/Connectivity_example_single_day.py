@@ -12,7 +12,7 @@ import scipy
 import matplotlib.pyplot as plt
 from matplotlib import colors 
 from SEEM import connectivity
-
+from SEEM import parula_cm
 # Where is the example data?     
 Path='../Data/' 
 
@@ -60,7 +60,7 @@ c=temp[6]
 c[c==0]=np.nan
 d=temp[7]
 d[d==0]=np.nan
-from parula import parula_cm
+
 
 cmi=np.nanmin(myVar[:,:,j,0])
 cma=np.nanmax(myVar[:,:,j,0])
