@@ -7,8 +7,8 @@ since 2007 (www.hobe.dk).
 The datasets originate from a process-based, distributed hydrological model (MIKESHE), coupled to a land-surface model (SW-ET).
 
 The dimensions of the files are as follows: 60 rows, 72 columns, 365 days, 3 scenarios with a spatial resolution of 1km2. The first 
-scenario is the baseline model and is considered as the baseline model in the following examples. The second scenario is based on a 
-reduced spatial detail vegetation parametrization and the third scenario is based on a reduced spatial detail in climatic forcing. 
+scenario is the baseline model and is considered as reference model in the following examples. The second scenario is based on a 
+reduced spatial detail in vegetation parametrization and the third scenario is based on a reduced spatial detail in climatic forcing. 
 Originally these data were simulated for a sensitivity analysis of the catchment model. This is not of concern of this repository, where 
 the data will simply serve as an example dataset.  
     
