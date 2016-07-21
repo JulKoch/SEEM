@@ -42,15 +42,16 @@ size=myVar.shape
 Con_high=np.empty([size[2]])
 Con_low=np.empty([size[2]])
 
+# call the connectivity function for each day; 365. This will take a couple of mins
 for i in range(0,size[2]):
 
     temp=connectivity(myVar[:,:,i,0],(myVar[:,:,i,myScen]))
-    Con_high[i]=temp[8]
-    Con_low[i]=temp[9]
+    Con_high[i]=temp[8] # final connectivity metric for high phase 
+    Con_low[i]=temp[9] # final connectivity metric for low phase
     print (('Day '+str(i)+' done'))
     
     
-#### The rest of the script is for plotting the EOF output
+#### The rest of the script is for plotting the Connectivity output
 if plot==True:
     
     x = [0,0+121,0+242,365]
