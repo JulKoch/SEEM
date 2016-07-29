@@ -128,6 +128,65 @@ def connectivity(obs,model):
     # final connectivity metric for low phase
     return (con_obs_high,con_model_high,con_obs_low,con_model_low,cl_obs_high,cl_model_high,cl_obs_low,cl_model_low,out_high,out_low)    
 #########################################################################################  
+# Fractions Skill Score (FSS) functions
+
+# in order to calculate FSS at large scale it makes it easier if we just extend the original array in all directions, 
+# insert the original data and fill the remaining grids with NaN values. 
+def extend_array(myarray):
+   maxlen=np.max(myarray.shape) 
+   newarray=np.empty([myarray.shape[0]+2*maxlen,myarray.shape[1]+2*maxlen])
+   newarray[:]=np.nan   
+   newarray[maxlen:maxlen+myarray.shape[0],maxlen:maxlen+myarray.shape[1]]=myarray    
+   return newarray
+
+# This function counts the number of possible neighbors at a given scale n (window size). 
+# It takes into consideration the catchment morphology, grids close to the boundary will have less possible neighbors.     
+# This function is most meaningful with uneven scales.
+def count_neigh(myarray, scale): 
+   newarray=np.empty([myarray.shape[0],myarray.shape[1]])
+   newarray[:]=np.nan
+   mask=np.isnan(myarray)
+   myarray=np.abs(np.isnan(myarray).astype(int)-1) # convert into binary
+   if scale==1: # if scale ==1 then there are no neighbors and we can use the original array.
+       newarray=myarray
+   else:
+       myarray=extend_array(myarray) # extend the array       
+       maxlen=np.max(newarray.shape)        
+       d=(scale-1)/2 # the scale is divided by two and the original grid is placed the center. 
+       for o in range(maxlen,maxlen+newarray.shape[0]): # loop through all grids
+           for p in range(maxlen,maxlen+newarray.shape[1]):
+               sub=myarray[o-d-1:o+d+1,p-d-1:p+d+1]
+               newarray[o-maxlen,p-maxlen]=np.nansum(sub) # count the neighbors within +/-d
+   newarray = newarray.astype(float)            
+   newarray[mask]=np.nan # grids outside the boundary are set to NaN 
+   return newarray # the output is an array of the same size as the input array and contains the neighbor count at a scale for each grid   
+    
+# This function searches for neighbors that belong to a certain threshold percentile (perc) class and fall into a window of size scale.
+# If a threshold percentile is below 50 it will automatically use the grids that fall below that value: E.g. perc=20 will focus on the lowest 20%.
+# Opposed, perc > 50 will focus on grids exceeding that threshold: E.g. perc=90 focuses on the top 10% of grids.    
+def search_neigh(myarray,scale,perc):
+    newarray=np.empty([myarray.shape[0],myarray.shape[1]])
+    newarray[:]=np.nan
+    mask=np.isnan(myarray)    
+    t=np.nanpercentile(myarray,perc)
+    if perc>50: # check if perc is greater or small than 50   
+        myarray=(myarray>=t).astype(int) # # if smaller the function will focus on grids falling below the threshold.  
+    else:
+        myarray=(myarray<=t).astype(int) # if smaller the function will focus on grids falling below the threshold. 
+    if scale==1: # if scale ==1 then there are no neighbors and we can use the original array.
+       newarray=myarray
+    else:
+       myarray=extend_array(myarray) # extend the array
+       maxlen=np.max(newarray.shape) 
+       d=(scale-1)/2 # the scale is divided by two and the original grid is placed the center.
+       for o in range(maxlen,maxlen+newarray.shape[0]): # loop through all grids
+           for p in range(maxlen,maxlen+newarray.shape[1]):
+               sub=myarray[o-d-1:o+d+1,p-d-1:p+d+1]
+               newarray[o-maxlen,p-maxlen]=np.nansum(sub)
+    newarray = newarray.astype(float)           
+    newarray[mask]=np.nan  # grids outside the boundary are set to NaN 
+    return newarray # the output is an array of the same size as the input array and contains the neighbor count at a scale for each grid constrain to a threshold percentile.     
+#########################################################################################  
 # parula color map
 # This is my preferred color map and it is used by e.g. matlab as standard.
 # It is not yet part of matplotlib and therefore needs to be imported separately.
