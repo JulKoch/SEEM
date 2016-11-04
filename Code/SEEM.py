@@ -43,7 +43,7 @@ def EOF_similarity(obs,model):
         skill=np.append(skill,np.sum(dif[l,:]*var))
     skill=np.delete(skill,0,axis=0)        
 # output: skill score, EOF maps 1-3, explained variance, loadings obs, loadings model
-    return (skill,Y[:,1],Y[:,2],Y[:,3],var,load_obs,load_model) 
+    return (skill,Y[:,0],Y[:,1],Y[:,2],var,load_obs,load_model) 
 #########################################################################################    
 # Connectivity Analysis
 # Input: two arrays with the same dimensions at a single time step. 

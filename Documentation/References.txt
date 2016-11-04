@@ -4,3 +4,6 @@ Fuzzy theory, and EOF-analysis benchmarked by the human perception and evaluated
 
 Koch, J., Siemann, A., Stisen, S. and Sheffield, J., 2016. Spatial validation of large‐scale land surface models against monthly land surface 
 temperature patterns using innovative performance metrics. Journal of Geophysical Research: Atmospheres.
+
+Roberts, N.M. and Lean, H.W., 2008. Scale-selective verification of rainfall accumulations from high-resolution forecasts of convective
+events. Monthly Weather Review, 136(1), pp.78-97.
