@@ -28,5 +28,7 @@ Based on Koch et al. (2015), located in the literature folder, we have uploaded 
 
 The Fractions Skill Score (FSS) analysis has been added to the repository. The code follows the description by Roberts and Lean (2008). The first example FSS_example_single_day computes and plots FSS for various scales and percentile thresholds at a single day. The second example calculates FSS at critical pairs of threshold and scale for every year in a one year period. The calculation is limited to specified pairs in order to reduce computational time.  
 
+*22/02/2017*
+We have uploaded the data obtained from our zooniverse project Pattern Perception (https://www.zooniverse.org/projects/jukoch/pattern-perception/home). The data is placed in the folder "HumanPerceptionSurvey_II". For each variable, the maps are made available as .mat files, where the four dimensions refer to X, Y, nday, nscenario. nscenario=1 refers to the baseline map which is used as reference. The resulting similarity scores for the six scenarios (nscenario=2-7) states the spatial similarity of that respective scenario to the baseline given for each of the 365 days.  
 
 ## Work in progress!!
