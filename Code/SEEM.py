@@ -26,7 +26,7 @@ def EOF_similarity(obs,model):
     data=np.concatenate((obs,model),axis=1)
 # Conduct the EOF via the svd function
     U, s, V = scipy.linalg.svd(data, full_matrices=True)
-    Y = np.dot((data),V);
+    Y = np.dot((data),np.transpose(V));
 # Compute the amount of explained variance    
     var_exp=np.cumsum(s**2/np.sum(s**2));
 # Split the resulting loadings into two    
