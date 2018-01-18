@@ -1,4 +1,5 @@
 # SEEM
+![alt text](https://zenodo.org/badge/61032780.svg)
 ## Spatial Evaluation of Environmental Models
 ***
 Keywords: 
